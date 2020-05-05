@@ -1,0 +1,74 @@
+<!--form [formGroup]="contactForm" (ngSubmit)="onSaveForm()">
+    <input type="text" formControlName="nombre" placeholder="nombre">
+    <input type="text" formControlName="img" placeholder="img">
+    <input type="text" formControlName="aparicion" placeholder="aparicion">
+    <input type="text" formControlName="casa" placeholder="casa">
+    <textarea formControlName="bio" placeholder="bio"></textarea>
+    <button type="submit" class="btn-send">Send</button>
+</form-->
+
+<h1>Crear Héroe <small>Marvel y DC</small></h1>
+<hr>
+<br>
+<div id="divHolaMundo"></div>
+<form [formGroup]="contactForm" (ngSubmit)="onSaveForm()">
+    <div class="form-group row">
+        <label for="inputNombre" class="col-sm-2 col-form-label">Nombre</label>
+        <div class="col-sm-10">
+            <input formControlName="nombre" type="text" class="form-control" id="inputNombre" placeholder="Ingrese nombre">
+        </div>
+    </div>
+    <fieldset class="form-group">
+        <div class="row">
+            <legend class="col-form-label col-sm-2 pt-0">Casa</legend>
+            <div class="col-sm-10">
+                <div class="form-check">
+                    <input class="form-check-input" formControlName="casa" type="radio" name="casa" value="Marvel" checked>
+                    <label class="form-check-label" for="gridRadios1">
+              Marvel
+            </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" formControlName="casa" type="radio" name="casa" value="DC">
+                    <label class="form-check-label" for="gridRadios2">
+              DC
+            </label>
+                </div>
+            </div>
+        </div>
+    </fieldset>
+    <div class="form-group row">
+        <label for="inputNombre" class="col-sm-2 col-form-label">Imagen</label>
+        <div class="col-sm-10">
+            <input formControlName="img" type="text" class="form-control" id="inputImagen" placeholder="Ingrese Imagen">
+        </div>
+    </div>
+    <!--<div class="form-group row">
+        <label for="inputNombre" class="col-sm-2 col-form-label">Imagen</label>
+        <div class="col-sm-10">
+            <div class="custom-file">
+                <input type="file" class="custom-file-input" id="customFileLang" lang="es">
+                <label class="custom-file-label" for="customFileLang">Seleccionar Archivo</label>
+            </div>
+        </div>
+    </div>-->
+    <div class="form-group row">
+        <label for="example-date-input" class="col-2 col-form-label">Fecha aparición</label>
+        <div class="col-10">
+            <input class="form-control" formControlName="aparicion" type="date" id="example-date-input">
+        </div>
+    </div>
+    <div class="form-group row" style="margin-bottom: 4rem;">
+        <label for="inputNombre" class="col-sm-2 col-form-label">Biografía</label>
+        <div class="col-sm-10">
+            <div class="custom-file">
+                <textarea placeholder="Ingrese biografía..." formControlName="bio" class="form-control" id="bioTextarea1" rows="3"></textarea>
+            </div>
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="offset-sm-2 col-sm-10">
+            <button type="submit" class="btn btn-primary">Guardar</button>
+        </div>
+    </div>
+</form>
