@@ -5,6 +5,8 @@ import { HeroesComponent } from './components/heroes/heroes.component';
 import { HeroeComponent } from './components/heroe/heroe.component';
 import { BuscadorComponent } from './components/buscador/buscador.component';
 import { CrearHeroeComponent } from './components/crear-heroe/crear-heroe.component';
+import { EditarHeroeComponent } from './components/editar-heroe/editar-heroe.component';
+
 
 const APP_ROUTES: Routes = [
     {path: 'home', component: HomeComponent },
@@ -13,6 +15,7 @@ const APP_ROUTES: Routes = [
     {path: 'heroe/:id', component: HeroeComponent },
     {path: 'buscar/:termino', component: BuscadorComponent },
     {path: 'crear-heroe', component: CrearHeroeComponent },
+    {path: 'editar-heroe/:id', component: EditarHeroeComponent },
     {path: '**', pathMatch: 'full', redirectTo: 'home'}
 ];
 

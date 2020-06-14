@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit } from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -10,23 +10,25 @@ import { ActivatedRoute } from "@angular/router";
 import * as jQuery from "jquery";
 
 @Component({
-  selector: "app-crear-heroe",
-  templateUrl: "./crear-heroe.component.html"
+  selector: 'app-editar-heroe',
+  templateUrl: './editar-heroe.component.html'
 })
-export class CrearHeroeComponent implements OnInit {
+export class EditarHeroeComponent implements OnInit {
+
   contactForm: FormGroup
   heroe: any = {}
   uploadedFile: File = null
   submitted: Boolean = false
   success: Boolean = false
-
+  idHeroe: string = null
+  
   createFormGroup() {
     return new FormGroup({
       nombre: new FormControl("", [Validators.required, Validators.minLength(3)]),
       bio: new FormControl("", [Validators.required]),
       img: new FormControl("", [Validators.required]),
       aparicion: new FormControl("", [Validators.required]),
-      casa: new FormControl("Marvel", [Validators.required])
+      casa: new FormControl("", [Validators.required])
     })
   }
 
@@ -36,7 +38,21 @@ export class CrearHeroeComponent implements OnInit {
     private formBuilder: FormBuilder
   ) {
     this.contactForm = this.createFormGroup();
+    this.activatedRoute.params.subscribe( params => {
+      this.idHeroe = params['id']
+      this.heroesService.getHeroe(this.idHeroe).subscribe(data => {
+        this.heroe = data['heroe'];
+        this.callingFunction()
+      });
+    });
   }
+
+  callingFunction() {
+    this.nombre.setValue(this.heroe.nombre);
+    this.bio.setValue(this.heroe.bio);
+    this.aparicion.setValue(this.heroe.aparicion);
+    this.casa.setValue(this.heroe.casa);
+   }
 
   ngOnInit(): void {
     $(document).ready(e => {
@@ -53,7 +69,7 @@ export class CrearHeroeComponent implements OnInit {
       });
     });
   }
-
+  
   onResetForm() {
     this.contactForm.reset();
   }
@@ -69,8 +85,10 @@ export class CrearHeroeComponent implements OnInit {
       formData.append('img', this.uploadedFile.name)
       formData.append('aparicion', this.aparicion.value)
       formData.append('casa', this.casa.value)
+      formData.append('id', this.idHeroe)
+      console.log(formData)
       this.activatedRoute.params.subscribe( params => {
-        this.heroesService.addHeroe(formData)
+        this.heroesService.updateHeroe(formData)
         .subscribe(data => {
           this.heroe = data['heroe']
         },

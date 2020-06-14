@@ -5,7 +5,9 @@
     <div class="col-md-4">
         <img class="img fluid card-img-top" [src]="heroe.img" [alt]="heroe.nombre">
         <br><br>
-        <a class="btn btn-outline-danger btn-block" [routerLink]="['/heroes']">Regresar</a>
+        <a class="btn btn-primary btn-block" [routerLink]="['/editar-heroe', this.idHeroe]">Editar</a>
+        <button type="button" class="btn btn-danger btn-block" (click)="eliminarHeroe()">Eliminar</button>
+        <a class="btn btn-outline-primary btn-block" [routerLink]="['/heroes']">Regresar</a>
     </div>
     <div class="col-md-8">
         <h3>{{heroe.nombre}}</h3>
