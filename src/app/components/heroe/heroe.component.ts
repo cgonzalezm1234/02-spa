@@ -28,6 +28,6 @@ export class HeroeComponent {
     this.heroesService.deleteHeroe(this.idHeroe).subscribe(data => {
       console.log(data);
     });
-    this.router.navigate( ['/heroes']);
+    this.router.navigate( ['/heroes'], { skipLocationChange: true });
   }
 }

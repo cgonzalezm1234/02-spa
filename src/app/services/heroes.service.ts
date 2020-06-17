@@ -24,17 +24,12 @@ export class HeroesService {
     return this.http.post<Heroe>(this.serviceUrl + 'CreateHeroe', heroe);
   }
 
-  /*public updateHeroe(id: string, heroe: any): Observable<Heroe> {
-    console.log(heroe)
-    return this.http.put<Heroe>(this.serviceUrl + 'UpdateHeroeById/' + id, heroe);
-  }*/
-
   public deleteHeroe(id: string): any {
     return this.http.delete<Heroe>(this.serviceUrl + 'DeleteHeroeById/' + id);
   }
 
   public updateHeroe(heroe: any): Observable<Heroe> {
-    return this.http.post<Heroe>(this.serviceUrl + 'UpdateHeroe', heroe);
+    return this.http.put<Heroe>(this.serviceUrl + 'UpdateHeroe', heroe);
   }
 }
 

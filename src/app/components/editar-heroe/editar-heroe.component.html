@@ -59,7 +59,7 @@
             <div class="custom-file">
                 <textarea placeholder="Ingrese biografía..." formControlName="bio" class="form-control" id="bioTextarea" rows="3"></textarea>
                 <div class="alert alert-danger" role="alert" *ngIf="(bio.touched || submitted) && bio.errors">
-                    <div *ngIf="bio.errors?.required">ingresa fecha de aparición</div>
+                    <div *ngIf="bio.errors?.required">ingresa biografía</div>
                 </div>
             </div>
         </div>
@@ -67,6 +67,7 @@
     <div class="form-group row">
         <div class="offset-sm-2 col-sm-10">
             <button type="submit" class="btn btn-primary">Guardar</button>
+            <a class="btn btn-outline-primary space" href="javascript:history.back()">Regresar</a>
             <div class="alert alert-success" *ngIf="submitted && success" role="alert">
                 ¡cambios guardados correctamente!
             </div>

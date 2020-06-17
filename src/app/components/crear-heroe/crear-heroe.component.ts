@@ -3,7 +3,8 @@ import {
   FormControl,
   FormGroup,
   Validators,
-  FormBuilder
+  FormBuilder,
+  ReactiveFormsModule
 } from "@angular/forms";
 import { HeroesService, Heroe } from "../../services/heroes.service";
 import { ActivatedRoute } from "@angular/router";
@@ -72,7 +73,7 @@ export class CrearHeroeComponent implements OnInit {
       this.activatedRoute.params.subscribe( params => {
         this.heroesService.addHeroe(formData)
         .subscribe(data => {
-          this.heroe = data['heroe']
+          console.log(data)
         },
         error => {
           console.log(error)
@@ -81,6 +82,11 @@ export class CrearHeroeComponent implements OnInit {
       this.success = true
     }
     else return
+  }
+
+  addFabric(contactForm)
+  {
+console.log(contactForm)
   }
 
   onFileSelect(event) {
