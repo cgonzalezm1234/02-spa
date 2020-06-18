@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from './../../environments/environment';
 
 @Injectable()
 
 export class HeroesService {
   private heroes: Heroe[] = [];
-  private serviceUrl = 'http://localhost:3001/api/';
+  private serviceUrl = environment.urlHeroesApi;
 
   constructor(private http: HttpClient) {
     console.log('service is working')
