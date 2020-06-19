@@ -10,6 +10,7 @@ export class HeroeComponent {
 
   heroe: any = {}
   idHeroe: string = null
+  suscribeService : any = null
 
   constructor(private activatedRoute: ActivatedRoute,
               private router: Router,

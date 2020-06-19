@@ -8,19 +8,27 @@ import { Router } from '@angular/router';
 })
 export class HeroesComponent implements OnInit {
 
-  heroes: Heroe[] = [];
-  
+  heroes: Heroe[] = []
+  suscribeService : any = null
+
   constructor(private heroesService: HeroesService,
               private router: Router
               ) {
   }
 
   ngOnInit(): void {
-    this.heroesService.getHeroes().subscribe(data => {
+    this.suscribeService = this.heroesService.getHeroes().subscribe(data => {
       this.heroes = data['heroes'];
     });
   }
   verHeroe( id: string ) {
     this.router.navigate( ['/heroe', id])
   }
+
+  /*ngOnDestroy() {
+    if (this.suscribeService) {
+      console.log('ondestroy');
+      this.suscribeService.unsubscribe();
+    }
+  }*/
 }

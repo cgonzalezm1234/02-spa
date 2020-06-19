@@ -7,7 +7,7 @@ import {
   ReactiveFormsModule
 } from "@angular/forms";
 import { HeroesService, Heroe } from "../../services/heroes.service";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import * as jQuery from "jquery";
 
 @Component({
@@ -20,6 +20,7 @@ export class CrearHeroeComponent implements OnInit {
   uploadedFile: File = null
   submitted: Boolean = false
   success: Boolean = false
+  suscribeService : any = null
 
   createFormGroup() {
     return new FormGroup({
@@ -34,7 +35,8 @@ export class CrearHeroeComponent implements OnInit {
   constructor(
     private heroesService: HeroesService,
     private activatedRoute: ActivatedRoute,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private router: Router
   ) {
     this.contactForm = this.createFormGroup();
   }
@@ -70,7 +72,7 @@ export class CrearHeroeComponent implements OnInit {
       formData.append('img', this.uploadedFile.name)
       formData.append('aparicion', this.aparicion.value)
       formData.append('casa', this.casa.value)
-      this.activatedRoute.params.subscribe( params => {
+      this.suscribeService =  this.activatedRoute.params.subscribe( params => {
         this.heroesService.addHeroe(formData)
         .subscribe(data => {
           console.log(data)
@@ -84,14 +86,15 @@ export class CrearHeroeComponent implements OnInit {
     else return
   }
 
-  addFabric(contactForm)
-  {
-console.log(contactForm)
-  }
-
   onFileSelect(event) {
     this.uploadedFile = event.target.files[0]
   }
+
+  /*ngOnDestroy() {
+    if (this.suscribeService) {
+      this.suscribeService.unsubscribe();
+    }
+  }*/
 
   get nombre(): any {
     return this.contactForm.get('nombre');

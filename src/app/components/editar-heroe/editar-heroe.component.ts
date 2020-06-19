@@ -21,7 +21,8 @@ export class EditarHeroeComponent implements OnInit {
   submitted: Boolean = false
   success: Boolean = false
   idHeroe: string = null
-  
+  suscribeService : any = null
+
   createFormGroup() {
     return new FormGroup({
       nombre: new FormControl("", [Validators.required, Validators.minLength(3)]),
@@ -86,8 +87,8 @@ export class EditarHeroeComponent implements OnInit {
       formData.append('aparicion', this.aparicion.value)
       formData.append('casa', this.casa.value)
       formData.append('id', this.idHeroe)
-      console.log(formData)
-      this.activatedRoute.params.subscribe( params => {
+
+      this.suscribeService = this.activatedRoute.params.subscribe( params => {
         this.heroesService.updateHeroe(formData)
         .subscribe(data => {
           this.heroe = data['heroe']
@@ -104,6 +105,12 @@ export class EditarHeroeComponent implements OnInit {
   onFileSelect(event) {
     this.uploadedFile = event.target.files[0]
   }
+
+  /*ngOnDestroy() {
+    if (this.suscribeService) {
+      this.suscribeService.unsubscribe();
+    }
+  }*/
 
   get nombre(): any {
     return this.contactForm.get('nombre');
