@@ -11,6 +11,7 @@ export class HeroeComponent {
   heroe: any = {}
   idHeroe: string = null
   suscribeService : any = null
+  deleted: Boolean = false
 
   constructor(private activatedRoute: ActivatedRoute,
               private router: Router,
@@ -29,6 +30,6 @@ export class HeroeComponent {
     this.heroesService.deleteHeroe(this.idHeroe).subscribe(data => {
       console.log(data);
     });
-    this.router.navigate( ['/heroes'], { skipLocationChange: true });
+    this.deleted = true;
   }
 }

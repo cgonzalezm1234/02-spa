@@ -4,9 +4,15 @@
 <div class="row animated fadeIn fast">
     <div class="col-md-4">
         <img class="img fluid card-img-top" [src]="heroe.img" [alt]="heroe.nombre">
+        <div class="alert alert-success" *ngIf="deleted" role="alert">
+            ¡héroe eliminado correctamente!
+        </div>
         <br><br>
-        <a class="btn btn-primary btn-block" [routerLink]="['/editar-heroe', this.idHeroe]">Editar</a>
-        <button type="button" class="btn btn-danger btn-block" (click)="eliminarHeroe()">Eliminar</button>
+        <!-- EDITAR -->
+        <a class="btn btn-primary btn-block" *ngIf="!deleted" [routerLink]="['/editar-heroe', this.idHeroe]">Editar</a>
+        <!-- ELIMINAR -->
+        <button type="button" *ngIf="!deleted" class="btn btn-danger btn-block" (click)="eliminarHeroe()">Eliminar</button>
+        <!--REGRESAR-->
         <a class="btn btn-outline-primary btn-block" [routerLink]="['/heroes']">Regresar</a>
     </div>
     <div class="col-md-8">

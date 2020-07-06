@@ -14,7 +14,7 @@ export class HeroesService {
   }
 
   public getHeroes(): Observable<Heroe> {
-    return this.http.get<Heroe>( this.serviceUrl + 'GetHeroes' + '?random+\=' + Math.random());
+    return this.http.get<Heroe>( this.serviceUrl + 'GetHeroes' + '?n+\=' + new Date().getTime());
   }
 
   public getHeroe( id: string): Observable<Heroe> {
